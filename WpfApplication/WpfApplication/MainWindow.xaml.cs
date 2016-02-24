@@ -27,8 +27,8 @@ namespace WpfApplication
 			Loaded += (sender, args) =>
 			{
 				var dialog = new LoginDialog();
-				var dialogResult = dialog.ShowDialog();
-				if (dialogResult.HasValue && dialogResult.Value)
+
+				if (dialog.ShowDialog() == true)
 				{
 					DataContext = dialog.DataContext;
 				}
