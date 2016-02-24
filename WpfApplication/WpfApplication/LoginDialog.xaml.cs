@@ -10,33 +10,31 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfApplication.ViewModel;
 
 namespace WpfApplication
 {
 	/// <summary>
-	/// Interaction logic for MainWindow.xaml
+	/// Interaction logic for LoginDialog.xaml
 	/// </summary>
-	public partial class MainWindow : Window
+	public partial class LoginDialog : Window
 	{
-		public MainWindow()
+		public LoginDialog()
 		{
 			InitializeComponent();
 
-			Loaded += (sender, args) =>
-			{
-				var dialog = new LoginDialog();
-				var dialogResult = dialog.ShowDialog();
-				if (dialogResult.HasValue && dialogResult.Value)
-				{
-					DataContext = dialog.DataContext;
-				}
-				else
-				{
-					Close();
-				}
-			};
+			DataContext = new LoginDialogViewModel();
+		}
+
+		private void ButtonOk_OnClick(object sender, RoutedEventArgs e)
+		{
+			DialogResult = true;
+		}
+
+		private void ButtonCancel_OnClick(object sender, RoutedEventArgs e)
+		{
+			DialogResult = false;
 		}
 	}
 }
